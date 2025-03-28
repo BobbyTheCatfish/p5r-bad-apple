@@ -1,0 +1,42 @@
+{
+  "ModId": "p5r.event.badapple",
+  "ModName": "Bad Apple (Event 100 000)",
+  "ModAuthor": "BobbyTheCatfish",
+  "ModVersion": "2.0.0",
+  "ModDescription": "Rule 86: If it exists, you can play Bad Apple on it.",
+  "ModDll": "",
+  "ModIcon": "thumb.png",
+  "ModR2RManagedDll32": "",
+  "ModR2RManagedDll64": "",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [
+    "Event",
+    "Music"
+  ],
+  "CanUnload": null,
+  "HasExports": null,
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "p5r.event.badappleReleaseMetadata.json",
+  "PluginData": {
+    "GameBanana": {
+      "ItemType": "Mod",
+      "ItemId": 420905
+    }
+  },
+  "IsUniversalMod": false,
+  "ModDependencies": [
+    "p5rpc.modloader"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "p5r.exe"
+  ],
+  "GitHubRelease": {
+    "UserName": "bobbythecatfish",
+    "RepositoryName": "p5r-bad-apple",
+    "UseReleaseTag": true,
+    "AssetFileName": "Mod.zip"
+  },
+  "ProjectUrl": "https://github.com/bobbythecatfish/p5r-bad-apple"
+}
