@@ -75,7 +75,7 @@ async function letsGooooo() {
         }
         const lines = []
         const vals = [...objects.values()]
-        for (let i = 0; i < y; i++) {
+        for (let i = y - 1; i >= 0; i--) {
             lines.push(vals.slice(i * x, (i + 1) * x).join(" "))
         }
         await printFrame(lines.join("\n"))
