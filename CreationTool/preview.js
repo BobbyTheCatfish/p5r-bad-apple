@@ -23,6 +23,21 @@
  * @prop {number} Field28
  * @prop {number} Field2C
  * 
+ * @typedef EVTCommand
+ * @prop {string} Type
+ * @prop {number} Field04
+ * @prop {number} Field06
+ * @prop {number} ObjectId
+ * @prop {number} Field0C
+ * @prop {number} Frame
+ * @prop {number} Duration
+ * @prop {number} DataSize
+ * @prop {string} EvtFlagType
+ * @prop {number} EvtFlagId
+ * @prop {number} EvtFlagValue
+ * @prop {string} EvtFlagConditionalType
+ * @prop {Record<string, any>} Data
+ * 
  * @typedef Data
  * @prop {EVTObject[]} Objects
  * @prop {Record<string, any>[]} Commands
@@ -50,6 +65,7 @@ function printFrame(input) {
 const objects = new Map(data.Objects.filter(o => o.Type === "Item").map(o => [o.Id.toString(), "0"]))
 
 const frames = data.Commands.filter(c => c.Type === "MAlp")
+
 async function letsGooooo() {
     let frame = 0;
     do {
