@@ -8,8 +8,8 @@
 
 /**
  * @typedef Data
- * @prop {Record<string, any>} Objects
- * @prop {Record<string, any>} Commands
+ * @prop {Record<string, any>[]} Objects
+ * @prop {Record<string, any>[]} Commands
  * @prop {number} Duration
  */
 
