@@ -7,8 +7,24 @@
  */
 
 /**
+ * 
+ * @typedef EVTObject
+ * @prop {number} Id
+ * @prop {string} Type
+ * @prop {number} Field08
+ * @prop {number} Field0C
+ * @prop {number} ResourceMajorId
+ * @prop {number} ResourceSubId
+ * @prop {number} ResourceMinorId
+ * @prop {number} Field1C
+ * @prop {number} AnimationMajorId
+ * @prop {number} AnimationMinorId
+ * @prop {number} AnimationSubId
+ * @prop {number} Field28
+ * @prop {number} Field2C
+ * 
  * @typedef Data
- * @prop {Record<string, any>[]} Objects
+ * @prop {EVTObject[]} Objects
  * @prop {Record<string, any>[]} Commands
  * @prop {number} Duration
  */
