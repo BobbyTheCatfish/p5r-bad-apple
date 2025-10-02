@@ -4,16 +4,27 @@ import base_object
 import json
 import subprocess
 
-file = base_object.file
-current_values = {}
-skipped = 0
+########################
+# CONFIG SECTION START #
+########################
 
 FRAMES = 6545
-WIDTH, HEIGHT = (24, 18)
 
 # Takes longer to load but is higher resolution
 #WIDTH, HEIGHT = (32, 24)
+
+WIDTH, HEIGHT = (24, 18)
+VID_PATH = "badapple.mp4"
 OUT_PATH = "../P5REssentials/CPK/APPLE.CPK/EVENT/E100/E100"
+
+######################
+# CONFIG SECTION END #
+######################
+
+
+file = base_object.file
+current_values = {}
+skipped = 0
 
 def initial_setup():
     print(WIDTH * HEIGHT)
@@ -131,32 +142,35 @@ def frame_parse(frame: int, img):
         else:
             skipped += 1
 
+def main():
 
-vid = cv2.VideoCapture("badapple.mp4")
-if not vid.isOpened():
-    raise Exception("Couldn't load the video. Is it named badapple.mp4?")
-
-
-initial_setup()
-
-for i in range(FRAMES):
-    ret, frame = vid.read()
-    if not ret:
-        print(f"Stopped early at frame {i} (ran out of frames to process)")
-        file["Duration"] = i + 50
-        break
-    frame_parse(i + 1, frame)
-    if i % 200 == 0:
-        print(f"Frame {i} complete")
-
-vid.release()
-print(f"All frames calculated. Optimization saved {skipped} frames! Saving now...")
-
-with open(f"{OUT_PATH}/E100_000.evt.json", "w") as f:
-    print("saving")
-    json.dump(file, f, indent=2)
-    print("Saved. converting...")
+    vid = cv2.VideoCapture(VID_PATH)
+    if not vid.isOpened():
+        raise Exception(f"Couldn't load the video. Is it named {VID_PATH}?")
 
 
-subprocess.run(["EvtTool/EvtTool.exe", f"{OUT_PATH}/E100_000.evt.json"])
-print("Done!")
+    initial_setup()
+
+    for i in range(FRAMES):
+        ret, frame = vid.read()
+        if not ret:
+            print(f"Stopped early at frame {i} (ran out of frames to process)")
+            file["Duration"] = i + 50
+            break
+        frame_parse(i + 1, frame)
+        if i % 200 == 0:
+            print(f"Frame {i} complete")
+
+    vid.release()
+    print(f"All frames calculated. Optimization saved {skipped} frames! Saving now...")
+
+    with open(f"{OUT_PATH}/E100_000.evt.json", "w") as f:
+        print("saving")
+        json.dump(file, f, indent=2)
+        print("Saved. converting...")
+
+
+    subprocess.run(["EvtTool/EvtTool.exe", f"{OUT_PATH}/E100_000.evt.json"])
+    print("Done!")
+
+main()
