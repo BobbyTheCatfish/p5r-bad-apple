@@ -1,3 +1,2 @@
-cv2
+opencv-python
 numpy
-json

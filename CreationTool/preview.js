@@ -49,6 +49,7 @@
 const data = require("../P5REssentials/CPK/APPLE.CPK/EVENT/E100/E100/E100_000.evt.json")
 const x = 24;
 const y = 18;
+const fps = 24
 
 
 /** @param {string} input */
@@ -58,7 +59,7 @@ function printFrame(input) {
             console.clear()
             console.log(input)
             res(null);
-        }, 1000 / 20);
+        }, 1000 / fps);
     })
 }
 
@@ -67,8 +68,7 @@ const objects = new Map(data.Objects.filter(o => o.Type === "Item").map(o => [o.
 const frames = data.Commands.filter(c => c.Type === "MAlp")
 
 async function letsGooooo() {
-    let frame = 0;
-    do {
+    for (let frame = 0; frame < data.Duration; frame++) {
         const cmds = frames.filter(f => f.Frame === frame)
         for (const cmd of cmds) {
             objects.set(cmd.ObjectId.toString(), cmd.Data.AlphaLevel === 0 ? " " : "0")
@@ -79,8 +79,7 @@ async function letsGooooo() {
             lines.push(vals.slice(i * x, (i + 1) * x).join(" "))
         }
         await printFrame(lines.join("\n"))
-        frame++;
-    } while (frame < data.Duration);
+    }
 }
 
 letsGooooo();
